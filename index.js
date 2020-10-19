@@ -18,7 +18,7 @@ const saveStationsDepartureEstimates = (stationsDepartureEstimates) => {
   for (const station of stationsDepartureEstimates) {
     for (const departures of station.etd) {
       for (const estimate of departures.estimate) {
-        console.log(`${estimate.length} car train for ${departures.destination} will depart ${station.name} platform ${estimate.platform} in ${estimate.minutes} minutes`);
+        console.log(`${new Date()}: ${estimate.length} car train for ${departures.destination} will depart ${station.name} platform ${estimate.platform} in ${estimate.minutes} minutes`);
       }
     }
   }
@@ -28,7 +28,6 @@ const run = async () => {
   const pollingDelayInMilliseconds = 60000;
 
   while (true) {
-    console.log(new Date());
     const stationsDepartureEstimates = await getStationsDepartureEstimates();
     saveStationsDepartureEstimates(stationsDepartureEstimates);
 
